@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Entity
 public class Bloc  implements Serializable  {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.TABLE)
 private long idBloc ;
     private String nomBloc;
     private long capaciteBloc ;
