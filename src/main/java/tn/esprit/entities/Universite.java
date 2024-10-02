@@ -1,10 +1,11 @@
 package tn.esprit.entities;
 
 import java.io.Serializable;
+
+
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serializable;
 
 @Getter
 @Setter
@@ -16,7 +17,11 @@ public class Universite implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idUniversite ;
-    private String nomUniversite ;
-    private String addresse ;
+    private long idUniversite;
+    private String nomUniversite;
+    private String addresse;
+    @OneToOne
+    private Foyer foyer;
+
+
 }
