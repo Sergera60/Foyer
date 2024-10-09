@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 public class FoyerApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(FoyerApplication.class, args);
 	}
 
