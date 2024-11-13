@@ -2,7 +2,9 @@ package tn.esprit.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.entities.Foyer;
 import tn.esprit.entities.Universite;
+import tn.esprit.repositories.FoyerRepository;
 import tn.esprit.repositories.UniversiteRepository;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UniversiteServiceImpl implements IUniversiteService {
     UniversiteRepository uni;
+    FoyerRepository foy ;
 
     @Override
     public Universite addUniversite(Universite universite) {
@@ -36,4 +39,26 @@ public class UniversiteServiceImpl implements IUniversiteService {
     public List<Universite> allUniversites() {
         return uni.findAll();
     }
+
+    @Override
+    public Universite affecterFoyerAUniversite(long idFoyer, String nomUniversite) {
+       Foyer f = foy.findById(idFoyer).get();
+       Universite unive = uni.findByNomUniversite(nomUniversite);
+    unive.setFoyer(f);
+    uni.save(unive);
+    return unive;
+    }
+
+    @Override
+    public Universite desaffecterFoyerAUniversite(long idUniversite) {
+        Universite unive = uni.findById(idUniversite).get();
+        unive.setFoyer(null);
+        uni.save(unive);
+
+        return unive;
+    }
+
+
+
+
 }

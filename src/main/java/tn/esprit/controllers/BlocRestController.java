@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.entities.Bloc;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.entities.Foyer;
 import tn.esprit.services.IBlocService;
 
 import java.util.List;
@@ -45,6 +46,10 @@ public class BlocRestController {
         blocService.deleteBloc(bId);
     }
 
+    @PostMapping("/affecterBlocAFoyer")
+    public  Bloc affecterBlocAFoyer(@RequestParam String nomBloc, @RequestParam Foyer foyer) {
+        return blocService.affecterBlocAFoyer(nomBloc, foyer);
+    }
 
 
 }

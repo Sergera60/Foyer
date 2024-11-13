@@ -41,4 +41,10 @@ public class ReservationRestController {
     public void deleteReservation(@RequestBody String rId) {
         reservationService.deleteReservation(rId);
     }
+
+    @PostMapping("/ajouterReservationAvecEtudiants")
+    public Reservation ajouterReservationAvecEtudiants(@RequestBody Reservation r) {
+        Reservation reservation = reservationService.ajouterReservationAvecEtudiants(r);
+        return reservation;
+    }
 }

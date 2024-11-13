@@ -1,5 +1,6 @@
 package tn.esprit.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class Chambre implements Serializable {
     @Enumerated(value = EnumType.STRING)
     private TypeChambre TypeC;
     @ManyToOne
+    @JsonIgnore
     private Bloc bloc ;
     @OneToMany
     private List<Reservation> reservations;

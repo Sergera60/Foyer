@@ -40,4 +40,19 @@ public class UniversiteRestController {
     public void deleteUniversite(@RequestBody Long uId) {
         universiteService.deleteUniversite(uId);
     }
+
+@PostMapping("/affecterFoyerAUniversite")
+    public Universite affecterFoyerAUniversite(@RequestBody long idFoyer , String nomUniversite) {
+        Universite universite = universiteService.affecterFoyerAUniversite(idFoyer,nomUniversite);
+        return universite;
+    }
+
+@PostMapping("/desaffecterFoyerAUniversite")
+    public Universite desaffecterFoyerAUniversite(@RequestBody long idUniversite) {
+        Universite universite = universiteService.desaffecterFoyerAUniversite(idUniversite);
+        return universite;
+    }
+
+
+
 }

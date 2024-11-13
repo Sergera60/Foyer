@@ -2,6 +2,7 @@ package tn.esprit.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.entities.Etudiant;
 import tn.esprit.entities.Reservation;
 import tn.esprit.repositories.ReservationRepository;
 
@@ -36,5 +37,14 @@ public class ReservationServiceImpl implements IReservationService {
     @Override
     public List<Reservation> allReservations() {
         return res.findAll();
+    }
+
+    @Override
+    public Reservation ajouterReservationAvecEtudiants(Reservation reservation) {
+        Reservation reservation1 = res.save(reservation);
+        List<Etudiant> et = reservation1.getEtudiants();
+
+    reservation1.setEtudiants(et);
+        return res.save(reservation1);
     }
 }

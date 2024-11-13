@@ -16,4 +16,6 @@ public interface IReservationService {
 
     List<Reservation> allReservations();
 
+    Reservation ajouterReservationAvecEtudiants (Reservation reservation);
+
 }

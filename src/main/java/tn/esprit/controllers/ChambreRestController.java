@@ -1,10 +1,13 @@
 package tn.esprit.controllers;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.entities.Chambre;
 import tn.esprit.services.IChambreService;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -41,4 +44,31 @@ public class ChambreRestController {
         return chambre;
     }
 
+    @GetMapping("/chambresSelonBloc/{nomBloc}")
+    public List<Chambre> chambresSelonNomBloc(@PathVariable String nomBloc) {
+        return chambreService.chambresSelonNomBloc(nomBloc);
+    }
+
+
+     @GetMapping("/chambresSelonAnnesRes/{d1}/{d2}")
+    public List<Chambre> chambresSelonAnnesRes(@PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd") Date d1, @PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd") Date d2) {
+        return chambreService.chambresSelonAnnesRes(d1, d2);
+    }
+
+    @GetMapping("/nbrChambresSelonCapaciteFoyer/{capaciteFoyer}")
+    public Integer nbrChambresSelonCapaciteFoyer(@PathVariable Long capaciteFoyer) {
+        return chambreService.nbrChambresSelonCapaciteFoyer(capaciteFoyer);
+    }
+
+
+    @GetMapping("/chambresSelonNomBlocQuery/{nomBloc}")
+    public List<Chambre> chambresSelonNomBlocQuery(@PathVariable String nomBloc) {
+        return chambreService.chambresSelonNomBlocQuery(nomBloc);
+    }
+
+
+    @GetMapping("/chambreSelonAnneeUniversitaireQuery/{d1}/{d2}")
+    public List<Chambre> chambreSelonAnneeUniversitaireQuery(@PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd") Date d1, @PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd") Date d2) {
+        return chambreService.chambreSelonAnneeUniversitaireQuery(d1, d2);
+    }
 }

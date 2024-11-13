@@ -20,7 +20,8 @@ public class Reservation  implements Serializable  {
     private String idReservation ;
     private Date anneeUniversitaire ;
     private Boolean estValide;
-    @ManyToMany
+
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Etudiant> etudiants ;
 
 

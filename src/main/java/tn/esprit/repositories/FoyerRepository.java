@@ -6,4 +6,5 @@ import tn.esprit.entities.Foyer;
 
 @Repository
 public interface FoyerRepository extends JpaRepository<Foyer, Long> {
+
 }
