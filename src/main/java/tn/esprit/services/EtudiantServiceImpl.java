@@ -37,4 +37,14 @@ public class EtudiantServiceImpl implements IEtudiantService {
     public List<Etudiant> allEtudiants() {
         return et.findAll();
     }
+
+    @Override
+    public List<String> findNomsEtudiantsReservationsValides(Integer anneeUniversitaire) {
+        return et.findNomsEtudiantsReservationsValides(anneeUniversitaire);
+    }
+
+    @Override
+    public List<String> findNomsEtudiantsReservationsValides2(Integer anneeUniversitaire) {
+        return et.findNomEtudiantByReservationValideAndAnneeUniversitaire(anneeUniversitaire);
+    }
 }

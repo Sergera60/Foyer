@@ -71,4 +71,16 @@ public class ChambreRestController {
     public List<Chambre> chambreSelonAnneeUniversitaireQuery(@PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd") Date d1, @PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd") Date d2) {
         return chambreService.chambreSelonAnneeUniversitaireQuery(d1, d2);
     }
+
+
+
+    @GetMapping("/countChambresReservationsNonValides/{anneeUniversitaire}")
+    public Integer countChambresReservationsNonValides(@PathVariable Integer anneeUniversitaire) {
+        return chambreService.countChambresReservationsNonValides(anneeUniversitaire);
+    }
+
+    @GetMapping("/countChambresReservationsNonValidesQuery/{anneeUniversitaire}")
+    public Integer countChambresReservationsNonValidesQuery(@PathVariable Integer anneeUniversitaire) {
+        return chambreService.countChambresReservationsNonValidesQuery(anneeUniversitaire);
+    }
 }

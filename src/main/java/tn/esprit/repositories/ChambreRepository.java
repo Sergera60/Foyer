@@ -27,4 +27,12 @@ List<Chambre> chambresSelonNomBloc( String nomBloc);
  @Query( "select c from Chambre c  join c.reservations r where r.anneeUniversitaire between :d1 and :d2")
  List<Chambre> ReservationAnneUniversitaire(@Param("d1") Date d1, @Param("d2") Date d2);
 
+
+
+ Integer countByReservationsValideFalseAndReservationsAnneeUniversitaireLessThan(Integer anneeUniversitaire);
+
+ @Query("SELECT COUNT(c) FROM Chambre c JOIN c.reservations r WHERE r.estValide = false AND r.anneeUniversitaire < :anneeUniversitaire")
+ Integer countChambresReservationsNonValides(@Param("anneeUniversitaire") Integer anneeUniversitaire);
+
+
 }

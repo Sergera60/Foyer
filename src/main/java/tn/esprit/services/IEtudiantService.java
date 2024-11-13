@@ -15,5 +15,7 @@ public interface IEtudiantService {
     Etudiant getEtudiantById(Long id);
 
     List<Etudiant> allEtudiants();
+    List<String> findNomsEtudiantsReservationsValides(Integer anneeUniversitaire);
 
+    List<String> findNomsEtudiantsReservationsValides2(Integer anneeUniversitaire);
 }

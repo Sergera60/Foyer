@@ -41,5 +41,14 @@ public class EtudiantRestController {
     public void deleteEtudiant(@RequestBody Long eId) {
         etudiantService.deleteEtudiant(eId);
     }
-
+    @PostMapping("/findNomsEtudiantsReservationsValides")
+    public List<String> findNomsEtudiantsReservationsValides(@RequestBody Integer anneeUniversitaire) {
+        List<String> listEtudiants = etudiantService.findNomsEtudiantsReservationsValides(anneeUniversitaire);
+        return listEtudiants;
+    }
+    @PostMapping("/findNomsEtudiantsReservationsValides2")
+    public List<String> findNomsEtudiantsReservationsValides2(@RequestBody Integer anneeUniversitaire) {
+        List<String> listEtudiants = etudiantService.findNomsEtudiantsReservationsValides2(anneeUniversitaire);
+        return listEtudiants;
+    }
 }

@@ -16,4 +16,8 @@ public interface IFoyerService {
 
     List<Foyer> allFoyers();
 
+    List<Foyer> findDistinctByNumChambreIn(List<Integer> numChambres);
+
+    List<Foyer> findDistinctByNumChambreIn2(List<Long> numChambres);
+
 }
