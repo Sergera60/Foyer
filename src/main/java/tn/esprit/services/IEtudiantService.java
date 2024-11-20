@@ -2,6 +2,7 @@ package tn.esprit.services;
 
 import tn.esprit.entities.Etudiant;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IEtudiantService {
@@ -15,7 +16,7 @@ public interface IEtudiantService {
     Etudiant getEtudiantById(Long id);
 
     List<Etudiant> allEtudiants();
-    List<String> findNomsEtudiantsReservationsValides(Integer anneeUniversitaire);
+    List<String> findNomsEtudiantsReservationsValides(Date anneeUniversitaire);
 
-    List<String> findNomsEtudiantsReservationsValides2(Integer anneeUniversitaire);
+    List<String> findNomsEtudiantsReservationsValides2(Date anneeUniversitaire);
 }

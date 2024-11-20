@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.entities.Etudiant;
 import tn.esprit.services.IEtudiantService;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -42,12 +43,12 @@ public class EtudiantRestController {
         etudiantService.deleteEtudiant(eId);
     }
     @PostMapping("/findNomsEtudiantsReservationsValides")
-    public List<String> findNomsEtudiantsReservationsValides(@RequestBody Integer anneeUniversitaire) {
+    public List<String> findNomsEtudiantsReservationsValides(@RequestBody Date anneeUniversitaire) {
         List<String> listEtudiants = etudiantService.findNomsEtudiantsReservationsValides(anneeUniversitaire);
         return listEtudiants;
     }
     @PostMapping("/findNomsEtudiantsReservationsValides2")
-    public List<String> findNomsEtudiantsReservationsValides2(@RequestBody Integer anneeUniversitaire) {
+    public List<String> findNomsEtudiantsReservationsValides2(@RequestBody Date anneeUniversitaire) {
         List<String> listEtudiants = etudiantService.findNomsEtudiantsReservationsValides2(anneeUniversitaire);
         return listEtudiants;
     }

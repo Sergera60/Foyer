@@ -36,9 +36,9 @@ Integer nbrChambresSelonCapaciteFoyer(Long capaciteFoyer);
     List<Chambre> chambreSelonAnneeUniversitaireQuery(Date d1, Date d2);
 
 
-    Integer countChambresReservationsNonValides(Integer anneeUniversitaire);
+    Integer countChambresReservationsNonValides(Date anneeUniversitaire);
 
-    Integer countChambresReservationsNonValidesQuery(Integer anneeUniversitaire);
+    Integer countChambresReservationsNonValidesQuery(Date anneeUniversitaire);
 
 
 }

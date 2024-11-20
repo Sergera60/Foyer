@@ -29,10 +29,10 @@ List<Chambre> chambresSelonNomBloc( String nomBloc);
 
 
 
- Integer countByReservationsValideFalseAndReservationsAnneeUniversitaireLessThan(Integer anneeUniversitaire);
+ Integer countByReservations_EstValideFalseAndReservations_AnneeUniversitaireBefore(Date anneeUniversitaire);
 
  @Query("SELECT COUNT(c) FROM Chambre c JOIN c.reservations r WHERE r.estValide = false AND r.anneeUniversitaire < :anneeUniversitaire")
- Integer countChambresReservationsNonValides(@Param("anneeUniversitaire") Integer anneeUniversitaire);
+ Integer countChambresReservationsNonValides(@Param("anneeUniversitaire") Date anneeUniversitaire);
 
 
 }

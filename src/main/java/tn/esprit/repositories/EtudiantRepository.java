@@ -6,15 +6,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import tn.esprit.entities.Etudiant;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 
-    List<String> findNomEtudiantByReservationValideAndAnneeUniversitaire(Integer anneeUniversitaire);
+    List<String> findDistinctNomEtByReservationsEstValideTrueAndReservationsAnneeUniversitaire(Date anneeUniversitaire);
 
-    @Query("SELECT e.nomEt FROM Etudiant e JOIN e.reservations r WHERE r.estValide = true AND r.anneeUniversitaire = :anneeUniversitaire")
-    List<String> findNomsEtudiantsReservationsValides(@Param("anneeUniversitaire") Integer anneeUniversitaire);
-
-
+    @Query("SELECT e.nomEt FROM Etudiant e JOIN e.reservations r WHERE r.estValide = true AND FUNCTION('YEAR', r.anneeUniversitaire) = :currentYear")
+    List<String> findNomEtudiantByReservationValideAndAnneeUniversitaire(@Param("currentYear") Date currentYear);
 }

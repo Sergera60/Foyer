@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.entities.Etudiant;
 import tn.esprit.repositories.EtudiantRepository;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -39,12 +40,12 @@ public class EtudiantServiceImpl implements IEtudiantService {
     }
 
     @Override
-    public List<String> findNomsEtudiantsReservationsValides(Integer anneeUniversitaire) {
-        return et.findNomsEtudiantsReservationsValides(anneeUniversitaire);
+    public List<String> findNomsEtudiantsReservationsValides(Date anneeUniversitaire) {
+        return et.findDistinctNomEtByReservationsEstValideTrueAndReservationsAnneeUniversitaire(anneeUniversitaire);
     }
 
     @Override
-    public List<String> findNomsEtudiantsReservationsValides2(Integer anneeUniversitaire) {
+    public List<String> findNomsEtudiantsReservationsValides2(Date anneeUniversitaire) {
         return et.findNomEtudiantByReservationValideAndAnneeUniversitaire(anneeUniversitaire);
     }
 }

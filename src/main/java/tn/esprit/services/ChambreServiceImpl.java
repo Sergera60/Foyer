@@ -74,12 +74,12 @@ public class ChambreServiceImpl implements IChambreService {
     }
 
     @Override
-    public Integer countChambresReservationsNonValides(Integer anneeUniversitaire) {
-        return ch.countByReservationsValideFalseAndReservationsAnneeUniversitaireLessThan(anneeUniversitaire);
+    public Integer countChambresReservationsNonValides(Date anneeUniversitaire) {
+        return ch.countByReservations_EstValideFalseAndReservations_AnneeUniversitaireBefore(anneeUniversitaire);
     }
 
     @Override
-    public Integer countChambresReservationsNonValidesQuery(Integer anneeUniversitaire) {
+    public Integer countChambresReservationsNonValidesQuery(Date anneeUniversitaire) {
         return ch.countChambresReservationsNonValides(anneeUniversitaire);
     }
 
