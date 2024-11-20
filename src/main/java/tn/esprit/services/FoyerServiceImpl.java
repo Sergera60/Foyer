@@ -2,7 +2,9 @@ package tn.esprit.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.entities.Bloc;
 import tn.esprit.entities.Foyer;
+import tn.esprit.repositories.BlocRepository;
 import tn.esprit.repositories.FoyerRepository;
 
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class FoyerServiceImpl implements IFoyerService {
     FoyerRepository foy;
-
+    BlocRepository bloc;
     @Override
     public Foyer addFoyer(Foyer foyer) {
         return foy.save(foyer);
@@ -47,4 +49,17 @@ public class FoyerServiceImpl implements IFoyerService {
     public Foyer findDistinctByNumChambreIn2(List<Long> numChambres) {
         return foy.findByBlocs_Chambres_NumChambreIn(numChambres);
     }
+
+    @Override
+    public Foyer ajouterFoyerAvecBlocsAssociés(Foyer foyer) {
+        List<Bloc> b = foyer.getBlocs();
+        for (Bloc blocs : b) {
+            blocs.setFoyer(foyer);
+            bloc.save(blocs);
+        }
+
+        return foyer ;
+    }
+
+
 }

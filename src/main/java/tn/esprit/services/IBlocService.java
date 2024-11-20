@@ -18,6 +18,7 @@ public interface IBlocService {
     List<Bloc> allBlocs();
 
     public Bloc affecterBlocAFoyer(String nomBloc, Foyer foyer) ;
+    Bloc affecterChambresABloc(List<Long> numChambre, long idBloc) ;
 
 
 }

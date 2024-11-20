@@ -21,6 +21,7 @@ public interface ChambreRepository extends JpaRepository<Chambre, Long> {
  @Query("select c from Chambre c where c.bloc.nomBloc  = ?1")
 List<Chambre> chambresSelonNomBloc( String nomBloc);
 
+ Chambre findByNumChambre (Long numChambre);
 
 
 
@@ -33,6 +34,8 @@ List<Chambre> chambresSelonNomBloc( String nomBloc);
 
  @Query("SELECT COUNT(c) FROM Chambre c JOIN c.reservations r WHERE r.estValide = false AND r.anneeUniversitaire < :anneeUniversitaire")
  Integer countChambresReservationsNonValides(@Param("anneeUniversitaire") Date anneeUniversitaire);
+
+
 
 
 }

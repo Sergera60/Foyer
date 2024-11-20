@@ -2,7 +2,9 @@ package tn.esprit.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.entities.Bloc;
 import tn.esprit.entities.Chambre;
+import tn.esprit.repositories.BlocRepository;
 import tn.esprit.repositories.ChambreRepository;
 
 import java.util.Date;
@@ -14,6 +16,7 @@ public class ChambreServiceImpl implements IChambreService {
 
 
     ChambreRepository ch ;
+    BlocRepository bl;
 
 
     @Override
@@ -81,6 +84,24 @@ public class ChambreServiceImpl implements IChambreService {
     @Override
     public Integer countChambresReservationsNonValidesQuery(Date anneeUniversitaire) {
         return ch.countChambresReservationsNonValides(anneeUniversitaire);
+    }
+
+    @Override
+    public Chambre affecterChambreABloc(Long num, Integer idBloc) {
+        Chambre c = ch.findByNumChambre(num);
+        Long id = Long.valueOf(idBloc);
+        Bloc b = bl.findById(id).get();
+        c.setBloc(b);
+        return ch.save(c);
+    }
+
+    @Override
+    public void desaffecterChambreDeBloc(Long num, Integer idBloc) {
+        Chambre c = ch.findByNumChambre(num);
+        Bloc b = bl.findById(Long.valueOf(idBloc)).get();
+        b.getChambres().remove(c);
+       ch.save(c);
+
     }
 
 

@@ -3,8 +3,10 @@ package tn.esprit.services;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.entities.Bloc;
+import tn.esprit.entities.Chambre;
 import tn.esprit.entities.Foyer;
 import tn.esprit.repositories.BlocRepository;
+import tn.esprit.repositories.ChambreRepository;
 import tn.esprit.repositories.FoyerRepository;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.List;
 public class BlocServiceImpl implements IBlocService {
     BlocRepository bl;
     FoyerRepository foy ;
+    ChambreRepository ch ;
 
 
     @Override
@@ -52,6 +55,23 @@ public class BlocServiceImpl implements IBlocService {
     bl.save(bloc);
     return bloc;
     }
+
+    @Override
+    public Bloc affecterChambresABloc(List<Long> numChambre, long idBloc) { // 2 parametre pas de cascades
+
+  Bloc blo = bl.findById(idBloc).get();
+  List<Chambre> chambres = new ArrayList<>();
+    for (Long num : numChambre) {
+        Chambre c = ch.findByNumChambre(num);
+        chambres.add(c);
+    }
+     ch.saveAll(chambres);
+    for(Chambre c : chambres){
+        c.setBloc(blo);
+        ch.save(c);
+    }
+    return blo;
+}
 
 
 }

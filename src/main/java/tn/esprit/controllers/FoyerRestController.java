@@ -50,4 +50,9 @@ public class FoyerRestController {
     public Foyer findDistinctByNumChambreIn2(@PathVariable List<Long> numChambres) {
         return foyerService.findDistinctByNumChambreIn2(numChambres);
     }
+    @PostMapping("/ajouterFoyerAvecBlocsAssociés")
+    public Foyer ajouterFoyerAvecBlocsAssociés(@RequestBody Foyer f) {
+        Foyer foyer = foyerService.ajouterFoyerAvecBlocsAssociés(f);
+        return foyer;
+    }
 }

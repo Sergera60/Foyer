@@ -39,6 +39,9 @@ Integer nbrChambresSelonCapaciteFoyer(Long capaciteFoyer);
     Integer countChambresReservationsNonValides(Date anneeUniversitaire);
 
     Integer countChambresReservationsNonValidesQuery(Date anneeUniversitaire);
+    Chambre affecterChambreABloc (Long num, Integer idBloc);
+
+    void desaffecterChambreDeBloc (Long num, Integer idBloc);
 
 
 }

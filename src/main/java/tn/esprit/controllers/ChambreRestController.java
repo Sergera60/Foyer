@@ -83,4 +83,12 @@ public class ChambreRestController {
     public Integer countChambresReservationsNonValidesQuery(@PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd")  Date anneeUniversitaire) {
         return chambreService.countChambresReservationsNonValidesQuery(anneeUniversitaire);
     }
+    @PostMapping("/affecterChambreABloc")
+    public Chambre affecterChambreABloc(@RequestParam Long num, @RequestParam Integer idBloc) {
+        return chambreService.affecterChambreABloc(num, idBloc);
+    }
+    @PostMapping("/desaffecterChambreDeBloc")
+    public void desaffecterChambreDeBloc(@RequestParam Long num, @RequestParam Integer idBloc) {
+        chambreService.desaffecterChambreDeBloc(num, idBloc);
+    }
 }

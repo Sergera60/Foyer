@@ -15,6 +15,7 @@ public interface IUniversiteService {
 
     List<Universite> allUniversites();
 
+    //affectation
     public Universite affecterFoyerAUniversite (long idFoyer, String nomUniversite) ;
 
     public Universite desaffecterFoyerAUniversite (long idUniversite) ;

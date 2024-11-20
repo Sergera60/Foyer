@@ -51,5 +51,9 @@ public class BlocRestController {
         return blocService.affecterBlocAFoyer(nomBloc, foyer);
     }
 
+    @PostMapping("/affecterChambresABloc")
+        public Bloc affecterChambresABloc(@RequestParam List<Long> numChambre, @RequestParam long idBloc) {
+        return blocService.affecterChambresABloc(numChambre, idBloc);
+    }
 
 }

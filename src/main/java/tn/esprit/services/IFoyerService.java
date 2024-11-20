@@ -20,4 +20,5 @@ public interface IFoyerService {
 
    Foyer findDistinctByNumChambreIn2(List<Long> numChambres);
 
+    Foyer ajouterFoyerAvecBlocsAssociés (Foyer foyer);
 }
