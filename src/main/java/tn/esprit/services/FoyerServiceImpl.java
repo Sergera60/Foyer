@@ -39,12 +39,12 @@ public class FoyerServiceImpl implements IFoyerService {
     }
 
     @Override
-    public List<Foyer> findDistinctByNumChambreIn(List<Integer> numChambres) {
-        return foy.findDistinctByNumChambreIn(numChambres);
+    public Foyer findDistinctByNumChambreIn(List<Long> numChambres) {
+        return foy.findFoyerByNumChambre(numChambres);
     }
 
     @Override
-    public List<Foyer> findDistinctByNumChambreIn2(List<Long> numChambres) {
-        return foy.findFoyersByNumChambres(numChambres);
+    public Foyer findDistinctByNumChambreIn2(List<Long> numChambres) {
+        return foy.findByBlocs_Chambres_NumChambreIn(numChambres);
     }
 }

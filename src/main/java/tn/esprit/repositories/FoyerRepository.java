@@ -10,10 +10,14 @@ import java.util.List;
 
 @Repository
 public interface FoyerRepository extends JpaRepository<Foyer, Long> {
-    List<Foyer> findDistinctByNumChambreIn(List<Integer> numChambres);
 
-    @Query("SELECT DISTINCT b.foyer FROM Chambre c JOIN c.bloc b WHERE c.numChambre IN :numChambres")
-    List<Foyer> findFoyersByNumChambres(@Param("numChambres") List<Long> numChambres);
+
+
+@Query("SELECT f FROM Foyer f join f.blocs b join b.chambres c WHERE c.numChambre IN ?")
+    Foyer findFoyerByNumChambre(List<Long> numChambres);
+
+
+Foyer findByBlocs_Chambres_NumChambreIn(List<Long> numChambres);
 
 
 }

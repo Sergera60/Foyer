@@ -42,12 +42,12 @@ public class FoyerRestController {
     }
 
     @GetMapping("/findDistinctByNumChambreIn/{numChambres}")
-    public List<Foyer> findDistinctByNumChambreIn(@PathVariable List<Integer> numChambres) {
+    public Foyer findDistinctByNumChambreIn(@PathVariable List<Long> numChambres) {
         return foyerService.findDistinctByNumChambreIn(numChambres);
     }
 
     @GetMapping("/findDistinctByNumChambreIn2/{numChambres}")
-    public List<Foyer> findDistinctByNumChambreIn2(@PathVariable List<Long> numChambres) {
+    public Foyer findDistinctByNumChambreIn2(@PathVariable List<Long> numChambres) {
         return foyerService.findDistinctByNumChambreIn2(numChambres);
     }
 }
