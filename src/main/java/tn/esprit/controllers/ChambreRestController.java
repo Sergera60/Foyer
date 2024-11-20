@@ -75,12 +75,12 @@ public class ChambreRestController {
 
 
     @GetMapping("/countChambresReservationsNonValides/{anneeUniversitaire}")
-    public Integer countChambresReservationsNonValides(@PathVariable Date anneeUniversitaire) {
+    public Integer countChambresReservationsNonValides(@PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd")  Date anneeUniversitaire) {
         return chambreService.countChambresReservationsNonValides(anneeUniversitaire);
     }
 
     @GetMapping("/countChambresReservationsNonValidesQuery/{anneeUniversitaire}")
-    public Integer countChambresReservationsNonValidesQuery(@PathVariable Date anneeUniversitaire) {
+    public Integer countChambresReservationsNonValidesQuery(@PathVariable @DateTimeFormat(pattern = "yyyy-mm-dd")  Date anneeUniversitaire) {
         return chambreService.countChambresReservationsNonValidesQuery(anneeUniversitaire);
     }
 }

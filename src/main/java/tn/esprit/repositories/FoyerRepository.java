@@ -13,7 +13,7 @@ public interface FoyerRepository extends JpaRepository<Foyer, Long> {
 
 
 
-@Query("SELECT f FROM Foyer f join f.blocs b join b.chambres c WHERE c.numChambre IN ?1")
+@Query("SELECT f FROM Foyer f join f.blocs b join b.chambres c WHERE c.numChambre in ?1")
     Foyer findFoyerByNumChambre(List<Long> numChambres);
 
 
