@@ -21,7 +21,7 @@ public class Bloc implements Serializable {
     private long capaciteBloc;
     @ManyToOne
     private Foyer foyer;
-    @OneToMany(mappedBy = "bloc")
+    @OneToMany(mappedBy = "bloc", fetch = FetchType.EAGER)
     private List<Chambre> chambres ;
 
 

@@ -1,17 +1,23 @@
 package tn.esprit.services;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import tn.esprit.entities.Bloc;
 import tn.esprit.entities.Chambre;
+import tn.esprit.entities.Reservation;
+import tn.esprit.entities.TypeChambre;
 import tn.esprit.repositories.BlocRepository;
 import tn.esprit.repositories.ChambreRepository;
+import tn.esprit.repositories.ReservationRepository;
 
 import java.util.Date;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ChambreServiceImpl implements IChambreService {
 
 
@@ -103,6 +109,76 @@ public class ChambreServiceImpl implements IChambreService {
        ch.save(c);
 
     }
+
+    @Scheduled(fixedDelay = 60000)
+    public void fixedDelayMethod(){
+        log.info("Method with fixed delay ");
+    }
+
+
+    @Scheduled(fixedDelay = 300000)
+    public void pourcentageChambreParTypeChambre(){
+        List<Chambre> chambres = ch.findAll();
+        int nbrChambreSimple = 0;
+        int nbrChambreDouble = 0;
+        int nbrChambreTriple = 0;
+        int total=0;
+        for(Chambre c : chambres){
+           log.info( "type chambre "+c.getTypeC());
+
+            if(c.getTypeC() == TypeChambre.SIMPLE){
+                nbrChambreSimple = nbrChambreSimple + 1;
+                log.info("nbr chambre simple "+nbrChambreSimple);
+            }
+            else if(c.getTypeC() == TypeChambre.DOUBLE){
+                nbrChambreDouble= nbrChambreDouble+1;
+            }
+            else if(c.getTypeC() == TypeChambre.TRIPLE){
+                nbrChambreTriple= nbrChambreTriple+1;
+            }
+        }
+        total = nbrChambreSimple + nbrChambreDouble + nbrChambreTriple;
+        log.info("chambre"+total);
+        log.info("Pourcentage de chambre SIMPLE : " + (nbrChambreSimple*100)/total + "%");
+        log.info("Pourcentage de chambre DOUBLE : " + (nbrChambreDouble*100)/total + "%");
+        log.info("Pourcentage de chambre TRIPLE : " + (nbrChambreTriple*100)/total + "%");
+    }
+
+
+    @Scheduled(fixedDelay = 300000)
+    public void nbPlacesDisponibleParChambreAnneeEnCour(){
+        List<Chambre> chambres = ch.findAll();
+      int capaciteChambre =0 ;
+        int nbrPlaceOccupe = 0;
+        int nbrPlaceDispo = 0;
+        for(Chambre c : chambres){
+
+           if(c.getTypeC() == TypeChambre.SIMPLE){
+               capaciteChambre = 1;}
+              else if(c.getTypeC() == TypeChambre.DOUBLE){
+                capaciteChambre = 2;}
+              else if(c.getTypeC() == TypeChambre.TRIPLE){
+                capaciteChambre = 3;
+           }
+              for (Reservation r: c.getReservations()){
+                 if(r.getEstValide()){
+                     nbrPlaceOccupe = c.getReservations().size();
+                     nbrPlaceDispo = capaciteChambre - nbrPlaceOccupe;
+                 }else if(!r.getEstValide()) {
+
+                        nbrPlaceDispo = capaciteChambre;
+                 }
+
+              }
+            if (nbrPlaceDispo==0){
+                log.info("Pas de chambre disponible ");
+            }else {
+            log.info("Chambre "+c.getNumChambre()+" Nombre de place disponible : "+nbrPlaceDispo);
+        }}
+    }
+
+
+
 
 
 }

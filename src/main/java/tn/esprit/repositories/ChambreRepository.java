@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface ChambreRepository extends JpaRepository<Chambre, Long> {
+
  List<Chambre> findByBloc_NomBloc(String nomBloc);
  List<Chambre> findByReservations_AnneeUniversitaireBetween(Date d1, Date d2);
 
@@ -34,6 +35,10 @@ List<Chambre> chambresSelonNomBloc( String nomBloc);
 
  @Query("SELECT COUNT(c) FROM Chambre c JOIN c.reservations r WHERE r.estValide = false AND r.anneeUniversitaire < :anneeUniversitaire")
  Integer countChambresReservationsNonValides(@Param("anneeUniversitaire") Date anneeUniversitaire);
+
+
+
+
 
 
 
