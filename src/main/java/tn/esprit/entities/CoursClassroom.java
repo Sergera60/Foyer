@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 
 @Getter
@@ -14,20 +13,17 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Chambre implements Serializable {
+public class CoursClassroom implements Serializable  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idChambre;
-
-    private long numChambre;
-
+    private  Integer idCours;
     @Enumerated(value = EnumType.STRING)
-    private TypeChambre TypeC;
+    private Specialite specialite ;
+    private String nom ;
+    private Integer nbHeures ;
+    private  boolean archive ;
+
     @ManyToOne
     @JsonIgnore
-    private Bloc bloc ;
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Reservation> reservations;
-
-
+    private Classe classe ;
 }
